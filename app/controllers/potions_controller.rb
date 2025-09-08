@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PotionsController < ApplicationController
+  before_action :require_logged_in
   before_action :set_potion, only: %i[edit show update]
 
   def index

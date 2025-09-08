@@ -1,0 +1,21 @@
+<h1><%= @potion.name %></h1>
+<p>Potency: <%= @potion.potency_level %> / 10</p>
+<p>Effect: <%= @potion.effect %></p>
+<% if user_is_current_user?(@potion.user) %>
+  <%= link_to "Edit #{@potion.name}", edit_potion_path(@potion) %>
+  <%= link_to "Delete #{@potion.name}", potion_path(@potion), method: :delete%>
+<% end %>
+<h2>Description</h2>
+<p><%= @potion.description %></p>
+<h2>Ingredients</h2>
+<% if @potion.potion_ingredients %>
+  <ul>
+    <% @potion.potion_ingredients.each do |potion_ingredient| %>
+      <li>
+        <%= potion_ingredient.quantity %> of <%= potion_ingredient.ingredient.name %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<h2>Created By</h2>
+<p><%= @potion.user.username %></p>
