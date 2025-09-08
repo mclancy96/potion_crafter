@@ -17,4 +17,22 @@
 
 * {
   font-family: 'Creepster', cursive, sans-serif !important;
+  color: white;
+  background: black;
+}
+
+.alert {
+  background: lightcoral;
+}
+
+.success {
+  background: lightgreen;
+}
+
+.notice {
+  background: lightblue;
+}
+
+nav {
+  border: 2px solid blue;
 }
