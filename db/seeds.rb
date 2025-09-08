@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 # Clear existing data
-User.destroy_all
+Review.destroy_all
+PotionIngredient.destroy_all
 Ingredient.destroy_all
 Potion.destroy_all
-PotionIngredient.destroy_all
-Review.destroy_all
+User.destroy_all
 
 puts 'Creating users...'
 # Create Users
@@ -13,8 +13,7 @@ users = []
 20.times do |i|
   users << User.create!(
     username: "wizard#{i + 1}",
-    email: "wizard#{i + 1}@potioncraft.com",
-    password_digest: BCrypt::Password.create('password123')
+    password: 'password123'
   )
 end
 
@@ -78,55 +77,55 @@ puts 'Creating potions...'
 # Create Potions
 potion_data = [
   { name: 'Elixir of Life', description: 'A legendary potion that grants eternal youth and vitality.',
-    effect: 'Immortality', potency_level: 10 },
+    effect: 'Immortality', potency_level: 10, image_url: 'elixir_of_life.png' },
   { name: 'Potion of Fire Immunity', description: 'Protects the drinker from all forms of fire and heat damage.',
-    effect: 'Fire Protection', potency_level: 8 },
+    effect: 'Fire Protection', potency_level: 8, image_url: 'potion_of_fire_immunity.png' },
   { name: 'Invisibility Draught', description: 'Renders the drinker completely invisible for several hours.',
-    effect: 'Invisibility', potency_level: 7 },
+    effect: 'Invisibility', potency_level: 7, image_url: 'invisibility_draught.png' },
   { name: 'Strength of Giants', description: 'Temporarily grants the physical power of mountain giants.',
-    effect: 'Super Strength', potency_level: 9 },
+    effect: 'Super Strength', potency_level: 9, image_url: 'strength_of_giants.png' },
   { name: 'Healing Potion', description: 'Rapidly heals wounds and restores health to the body.', effect: 'Healing',
-    potency_level: 5 },
+    potency_level: 5, image_url: 'healing_potion.png' },
   { name: 'Potion of Levitation', description: 'Allows the drinker to float and fly through the air.',
-    effect: 'Flight', potency_level: 6 },
+    effect: 'Flight', potency_level: 6, image_url: 'potion_of_levitation.png' },
   { name: 'Mind Reading Elixir', description: 'Grants temporary telepathic abilities to read thoughts.',
-    effect: 'Telepathy', potency_level: 8 },
+    effect: 'Telepathy', potency_level: 8, image_url: 'mind_reading_elixir.png' },
   { name: 'Potion of Speed', description: 'Dramatically increases movement and reaction speed.', effect: 'Super Speed',
-    potency_level: 7 },
+    potency_level: 7, image_url: 'potion_of_speed.png' },
   { name: 'Truth Serum', description: 'Forces the drinker to speak only the truth.', effect: 'Truth Telling',
-    potency_level: 6 },
+    potency_level: 6, image_url: 'truth_serum.png' },
   { name: 'Potion of Night Vision', description: 'Allows perfect vision in complete darkness.', effect: 'Night Vision',
-    potency_level: 4 },
+    potency_level: 4, image_url: 'potion_of_night_vision.png' },
   { name: 'Liquid Courage', description: "Removes all fear and doubt from the drinker's mind.", effect: 'Fearlessness',
-    potency_level: 5 },
+    potency_level: 5, image_url: 'liquid_courage.png' },
   { name: 'Potion of Polymorphing', description: 'Transforms the drinker into any animal for a limited time.',
-    effect: 'Shape Shifting', potency_level: 9 },
+    effect: 'Shape Shifting', potency_level: 9, image_url: 'potion_of_polymorphing.png' },
   { name: 'Elixir of Wisdom', description: 'Temporarily enhances intelligence and magical knowledge.',
-    effect: 'Intelligence Boost', potency_level: 7 },
+    effect: 'Intelligence Boost', potency_level: 7, image_url: 'elixir_of_wisdom.png' },
   { name: 'Potion of Water Breathing', description: 'Allows breathing underwater like a fish.',
-    effect: 'Underwater Breathing', potency_level: 6 },
+    effect: 'Underwater Breathing', potency_level: 6, image_url: 'potion_of_water_breathing.png' },
   { name: 'Love Potion', description: 'Creates intense romantic attraction in the drinker.', effect: 'Charm',
-    potency_level: 5 },
+    potency_level: 5, image_url: 'https://blenderartists.org/uploads/default/original/4X/8/a/d/8ada99338a9a1a62c1204a2271ac198d33cebb72.jpeg' },
   { name: 'Potion of Stone Skin', description: 'Hardens the skin to be as tough as granite.',
-    effect: 'Damage Resistance', potency_level: 8 },
+    effect: 'Damage Resistance', potency_level: 8, image_url: 'potion_of_stone_skin.png' },
   { name: 'Elixir of Youth', description: 'Reverses aging by 10-20 years temporarily.', effect: 'Age Reversal',
-    potency_level: 8 },
+    potency_level: 8, image_url: 'elixir_of_youth.png' },
   { name: 'Potion of Giant Growth', description: "Increases the drinker's size to three times normal.",
-    effect: 'Size Increase', potency_level: 7 },
+    effect: 'Size Increase', potency_level: 7, image_url: 'potion_of_giant_growth.png' },
   { name: 'Sleeping Draught', description: 'Induces deep, peaceful sleep for exactly 8 hours.', effect: 'Sleep',
-    potency_level: 3 },
+    potency_level: 3, image_url: 'sleeping_draught.png' },
   { name: 'Potion of Luck', description: 'Greatly improves fortune and success in all endeavors.',
-    effect: 'Luck Enhancement', potency_level: 6 },
+    effect: 'Luck Enhancement', potency_level: 6, image_url: 'potion_of_luck.png' },
   { name: 'Antidote Supreme', description: 'Neutralizes any poison or toxin in the body.', effect: 'Poison Cure',
-    potency_level: 9 },
+    potency_level: 9, image_url: 'antidote_supreme.png' },
   { name: 'Potion of Time Dilation', description: 'Slows down time perception for the drinker.',
-    effect: 'Time Manipulation', potency_level: 10 },
+    effect: 'Time Manipulation', potency_level: 10, image_url: 'potion_of_time_dilation.png' },
   { name: 'Elixir of Charisma', description: 'Makes the drinker irresistibly charming and persuasive.',
-    effect: 'Charisma Boost', potency_level: 6 },
+    effect: 'Charisma Boost', potency_level: 6, image_url: 'elixir_of_charisma.png' },
   { name: 'Potion of Perfect Memory', description: 'Grants photographic memory for 24 hours.',
-    effect: 'Memory Enhancement', potency_level: 7 },
+    effect: 'Memory Enhancement', potency_level: 7, image_url: 'potion_of_perfect_memory.png' },
   { name: "Berserker's Brew", description: 'Sends the drinker into a controlled battle rage.', effect: 'Battle Fury',
-    potency_level: 8 }
+    potency_level: 8, image_url: 'berserkers_brew.png' }
 ]
 
 potions = potion_data.map do |data|
@@ -135,7 +134,8 @@ potions = potion_data.map do |data|
     description: data[:description],
     user: users.sample,
     effect: data[:effect],
-    potency_level: data[:potency_level]
+    potency_level: data[:potency_level],
+    image_url: data[:image_url]
   )
 end
 
