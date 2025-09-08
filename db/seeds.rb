@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Clear existing data
 User.destroy_all
 Ingredient.destroy_all
@@ -68,9 +70,8 @@ ingredient_data = [
     rarity: 2 }
 ]
 
-ingredients = []
-ingredient_data.each do |data|
-  ingredients << Ingredient.create!(data)
+ingredients = ingredient_data.map do |data|
+  Ingredient.create!(data)
 end
 
 puts 'Creating potions...'
@@ -128,9 +129,8 @@ potion_data = [
     potency_level: 8 }
 ]
 
-potions = []
-potion_data.each do |data|
-  potions << Potion.create!(
+potions = potion_data.map do |data|
+  Potion.create!(
     name: data[:name],
     description: data[:description],
     user: users.sample,
