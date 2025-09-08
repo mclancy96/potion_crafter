@@ -2,6 +2,8 @@
 
 ## ERD
 
+[ERD Source](https://dbdiagram.io/d/Potion-Crafter-68bed1e161a46d388efbb802)
+
 ```text
 User
  ├── has_many :potions

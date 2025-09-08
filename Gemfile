@@ -30,7 +30,6 @@ end
 group :test do
   gem 'capybara'
   gem 'rspec'
+  gem 'rspec-rails', '~> 8.0'
   gem 'selenium-webdriver'
 end
-
-gem "rspec-rails", "~> 8.0"
