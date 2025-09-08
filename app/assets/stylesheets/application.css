@@ -17,6 +17,8 @@
 
 * {
   font-family: 'Creepster', cursive, sans-serif !important;
+  color: white;
+  background: black;
 }
 
 .alert {
@@ -29,4 +31,8 @@
 
 .notice {
   background: lightblue;
+}
+
+nav {
+  border: 2px solid blue;
 }

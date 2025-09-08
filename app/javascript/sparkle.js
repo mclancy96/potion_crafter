@@ -1,4 +1,4 @@
-// source: https://codepen.io/sarahwfox/pen/pNrYGb
+// original source: https://codepen.io/sarahwfox/pen/pNrYGb
 function update_tiny(i) {
     if (tiny[i]) {
         if (--tinyv[i] === 25 && tiny[i].style) {
@@ -68,17 +68,17 @@ const tinyy = [];
 const tinyv = [];
 
 const colors = [
-    '#6a0dad', // deep purple
-    '#228b22', // forest green
-    '#483d8b', // dark slate blue
-    '#2e8b57', // sea green
-    '#4b0082', // indigo
-    '#8a2be2', // blue violet
-    '#5f9ea0', // cadet blue (eerie teal)
-    '#696969', // dim gray (smoky)
-    '#191970', // midnight blue
-    '#00ced1', // dark turquoise
-    '#9400d3', // dark violet
+  '#fffacd', // lemon chiffon (soft yellow-white)
+  '#ffffe0', // light yellow
+  '#fff8dc', // cornsilk (warm white)
+  '#fff',    // pure white
+  '#ffd700', // gold
+  '#fff5e1', // pale gold
+  '#ffe4b5', // moccasin (light yellow-orange)
+  '#fafad2', // light goldenrod yellow
+  '#f5f5dc', // beige (off-white)
+  '#ffe4c4', // bisque (warm white)
+  '#fffaf0', // floral white
 ];
 
 function mouseMoveHandler(e) {
