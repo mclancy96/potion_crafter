@@ -18,3 +18,15 @@
 * {
   font-family: 'Creepster', cursive, sans-serif !important;
 }
+
+.alert {
+  background: lightcoral;
+}
+
+.success {
+  background: lightgreen;
+}
+
+.notice {
+  background: lightblue;
+}
