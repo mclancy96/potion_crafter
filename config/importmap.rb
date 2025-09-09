@@ -9,4 +9,5 @@ pin '@hotwired/stimulus-loading', to: 'stimulus-loading.js'
 pin_all_from 'app/javascript/controllers', under: 'controllers'
 pin 'jquery' # @3.7.1
 pin 'sparkle', to: 'sparkle.js'
+pin 'goop', to: 'goop.js'
 pin 'remove_ingredient', to: 'remove_ingredient.js'
