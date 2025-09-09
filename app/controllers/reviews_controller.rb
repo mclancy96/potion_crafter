@@ -3,7 +3,5 @@
 class ReviewsController < ApplicationController
   before_action :require_logged_in
 
-  def edit
-    
-  end
+  def edit; end
 end
