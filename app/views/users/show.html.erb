@@ -1,13 +1,13 @@
 <h1><%= @user.username %></h1>
 <h2>Potions</h2>
-<% if @user.potions && @user.potions.length > 1 %>
+<% if @user.potions.any? %>
   <%= render 'potions/table' %>
 <% else %>
   <p><i>User Has no Potions</i></p>
 <% end %>
 <hr>
 <h2>Reviews</h2>
-<% if @user.reviews && @user.reviews.length > 1 %>
+<% if @user.reviews.any? %>
   <% @user.reviews.each do |review| %>
     <div>
       <h3><%= link_to review.potion.name, potion_path(review.potion) %></h3>
