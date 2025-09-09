@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   resources :potions do
-    resources :ingredients
     resources :reviews
   end
 

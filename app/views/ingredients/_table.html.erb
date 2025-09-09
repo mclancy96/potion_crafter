@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Rarity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ingredients.each do |ingredient| %>
+      <tr>
+        <td><%= link_to ingredient.name, ingredient_path(ingredient) %></td>
+        <td><%= ingredient.description %></td>
+        <td><%= ingredient.rarity %></td>
+        <td>
+          <%= link_to 'Edit', edit_ingredient_path(ingredient) %> |
+          <%= link_to 'Delete', ingredient_path(ingredient), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
