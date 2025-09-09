@@ -1,0 +1,18 @@
+<h1><%= @ingredient.name %></h1>
+<%= link_to 'Edit', edit_ingredient_path(@ingredient), class: 'btn' %> |
+<%= link_to 'Back', ingredients_path, class: 'btn' %>
+<h2>Ingredient Information</h2>
+<p><strong>Description:</strong> <%= @ingredient.description %></p>
+<p><strong>Rarity:</strong> <%= @ingredient.rarity %></p>
+<h2>Potions Requiring <%= @ingredient.name %></h2>
+<% if @ingredient.potion_ingredients && @ingredient.potion_ingredients.length.positive? %>
+  <% @ingredient.potion_ingredients.each do |potion_ingredient| %>
+    <ul>
+      <li>
+        <%= link_to potion_ingredient.potion.name, potion_path(potion_ingredient.potion) %> - <%= potion_ingredient.quantity %>
+      </li>
+    </ul>
+  <% end %>
+<% else %>
+  <p><i>No Potions Use this Ingredient</i></p>
+<% end %>

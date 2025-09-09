@@ -14,7 +14,7 @@
   <ul>
     <% @potion.potion_ingredients.each do |potion_ingredient| %>
       <li>
-        <%= potion_ingredient.quantity %> of <%= potion_ingredient.ingredient.name %>
+        <%= potion_ingredient.quantity %> of <%= link_to potion_ingredient.ingredient.name, ingredient_path(potion_ingredient.ingredient) %>
       </li>
     <% end %>
   </ul>
