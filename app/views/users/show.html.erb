@@ -1,0 +1,24 @@
+<h1><%= @user.username %></h1>
+<h2>Potions</h2>
+<% if @user.potions && @user.potions.length > 1 %>
+  <%= render 'potions/table' %>
+<% else %>
+  <p><i>User Has no Potions</i></p>
+<% end %>
+<hr>
+<h2>Reviews</h2>
+<% if @user.reviews && @user.reviews.length > 1 %>
+  <% @user.reviews.each do |review| %>
+    <div>
+      <h3><%= link_to review.potion.name, potion_path(review.potion) %></h3>
+      <p><%= review.rating_stars %></p>
+      <p><%= review.comment %></p>
+      <p>
+        <i>- <%= link_to review.user.username, user_path(review.user) %></i>
+        <%= user_is_current_user?(review.user) ? button_to('Edit Review', edit_potion_review_path(review.potion, review), method: :get) : ''%>
+      </p>
+    </div>
+  <% end %>
+<% else %>
+  <p><i>User Has no Reviews</i></p>
+<% end %>
