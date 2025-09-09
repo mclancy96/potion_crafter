@@ -15,11 +15,13 @@ class PotionsController < ApplicationController
 
   def create
     @potion = Potion.new(potion_params)
+    @potion.user_id = current_user.id
     if @potion.save
+      puts 'Potion created'
       flash[:notice] = "#{@potion.name} created successfully"
       redirect_to potion_path(@potion)
     else
-      flash[:alert] = 'Unable to Create Potion'
+      flash.now[:alert] = 'Unable to Create Potion'
       render :new
     end
   end

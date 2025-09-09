@@ -37,7 +37,8 @@ class Potion < ApplicationRecord
   end
 
   def overall_rating
-    reviews.average(:rating).to_f
+    avg = reviews.average(:rating)
+    avg ? avg.round(2) : 0.0
   end
 
   private
