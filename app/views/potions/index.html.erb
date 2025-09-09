@@ -1,0 +1,30 @@
+<h1>Potions</h1>
+<div style="padding-bottom: 2em">
+  <%= link_to 'New Potion', new_potion_path %>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>User</th>
+      <th>Effect</th>
+      <th>Potency</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @potions.each do |potion| %>
+      <tr>
+        <td><%= link_to potion.name, potion_path(potion) %></td>
+        <td><%= potion.description %></td>
+        <td><%= potion.user.username %></td>
+        <td><%= potion.effect %></td>
+        <td><%= potion.potency_level %> / 10</td>
+        <td><%= user_is_current_user?(potion.user) ? button_to('Edit', edit_potion_path(potion), method: :get) : '' %></td>
+        <td><%= user_is_current_user?(potion.user) ? button_to('Delete', potion_path(potion), method: :delete) : '' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

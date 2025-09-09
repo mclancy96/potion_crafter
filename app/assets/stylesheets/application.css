@@ -8,6 +8,27 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+body {
+  position: relative;
+  z-index: 0;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/cauldron.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -1;
+}
+
 @font-face {
   font-family: 'Creepster';
   src: url('Creepster-Regular.ttf') format('truetype');
@@ -18,7 +39,23 @@
 * {
   font-family: 'Creepster', cursive, sans-serif !important;
   color: white;
+}
+
+body {
+  cursor: url('/broom.png'), pointer;
+  background: rgba(0, 0, 0, 0.9);
+  min-height: 100vh;
+}
+
+input[type='submit'] {
   background: black;
+}
+
+input:not([type='submit']),
+textarea,
+select,
+button {
+  color: black;
 }
 
 .alert {

@@ -3,3 +3,4 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "jquery";
 import "sparkle";
+import "remove_ingredient";
