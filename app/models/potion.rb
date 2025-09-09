@@ -7,10 +7,10 @@ class Potion < ApplicationRecord
   has_many :reviews, dependent: :destroy
   accepts_nested_attributes_for :potion_ingredients, allow_destroy: true,
                                                      reject_if: proc { |attrs|
-                                                       attrs['ingredient_id'].blank? ||
-                                                         attrs['quantity'].blank? ||
-                                                         attrs['quantity'].to_s.strip.empty? ||
-                                                         attrs['ingredient_id'].to_s.strip.empty?
+                                                       attrs["ingredient_id"].blank? ||
+                                                         attrs["quantity"].blank? ||
+                                                         attrs["quantity"].to_s.strip.empty? ||
+                                                         attrs["ingredient_id"].to_s.strip.empty?
                                                      }
   validate :no_duplicate_ingredients
 
@@ -20,14 +20,14 @@ class Potion < ApplicationRecord
 
   def display_image_url
     if image_url.present?
-      if image_url =~ %r{\Ahttps?://}
+      if %r{\Ahttps?://}.match?(image_url)
         return image_url
-      elsif File.exist?(Rails.root.join('app', 'assets', 'images', image_url))
+      elsif File.exist?(Rails.root.join("app", "assets", "images", image_url))
         return ActionController::Base.helpers.asset_path(image_url)
       end
     end
 
-    ActionController::Base.helpers.asset_path('potion_bottle_placeholder.jpg')
+    ActionController::Base.helpers.asset_path("potion_bottle_placeholder.jpg")
   end
 
   def ingredient_options(potion_ingredient)
@@ -41,7 +41,7 @@ class Potion < ApplicationRecord
     avg ? avg.round(2) : 0.0
   end
 
-  private
+private
 
   def no_duplicate_ingredients
     ids = potion_ingredients.map(&:ingredient_id).reject(&:blank?)

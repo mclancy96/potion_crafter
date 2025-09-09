@@ -17,11 +17,11 @@ class PotionsController < ApplicationController
     @potion = Potion.new(potion_params)
     @potion.user_id = current_user.id
     if @potion.save
-      puts 'Potion created'
+      puts "Potion created"
       flash[:notice] = "#{@potion.name} created successfully"
       redirect_to potion_path(@potion)
     else
-      flash.now[:alert] = 'Unable to Create Potion'
+      flash.now[:alert] = "Unable to Create Potion"
       render :new
     end
   end
@@ -37,7 +37,7 @@ class PotionsController < ApplicationController
       flash[:notice] = "#{@potion.name} updated successfully"
       redirect_to potion_path(@potion)
     else
-      flash[:alert] = 'Unable to Update Potion'
+      flash[:alert] = "Unable to Update Potion"
       render :edit
     end
   end
@@ -47,12 +47,12 @@ class PotionsController < ApplicationController
       flash[:notice] = "#{@potion.name} deleted successfully"
       redirect_to potions_path
     else
-      flash[:alert] = 'Unable to delete Potion'
+      flash[:alert] = "Unable to delete Potion"
       render :show
     end
   end
 
-  private
+private
 
   def potion_params
     params.require(:potion).permit(

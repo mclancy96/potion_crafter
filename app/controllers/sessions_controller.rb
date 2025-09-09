@@ -23,15 +23,15 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
-  private
+private
 
   def handle_user_not_found
-    flash[:alert] = 'User not found'
+    flash[:alert] = "User not found"
     redirect_to login_path
   end
 
   def handle_invalid_password
-    flash.now[:alert] = 'Invalid password'
+    flash.now[:alert] = "Invalid password"
     @user = User.new(username: user_params[:username])
     render :new, status: :unprocessable_entity
   end

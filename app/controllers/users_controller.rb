@@ -9,10 +9,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = 'User Created'
+      flash[:notice] = "User Created"
       redirect_to root_path
     else
-      flash[:alert] = 'Unable to Create User'
+      flash[:alert] = "Unable to Create User"
       render :new, status: :unprocessable_entity
     end
   end
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @potions = @user.potions
   end
 
-  private
+private
 
   def user_params
     params.require(:user).permit(:username, :password, :password_confirmation)

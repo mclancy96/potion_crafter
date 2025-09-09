@@ -10,6 +10,6 @@ class Review < ApplicationRecord
                             less_than_or_equal_to: 5 }
 
   def rating_stars
-    '⭐️' * rating
+    "⭐️" * rating
   end
 end
