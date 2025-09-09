@@ -2,7 +2,7 @@
 
 class PotionsController < ApplicationController
   before_action :require_logged_in
-  before_action :set_potion, only: %i[edit show update]
+  before_action :set_potion, only: %i[edit show update destroy]
 
   def index
     @potions = Potion.all
@@ -10,6 +10,7 @@ class PotionsController < ApplicationController
 
   def new
     @potion = Potion.new
+    3.times { @potion.potion_ingredients.build }
   end
 
   def create
@@ -25,9 +26,19 @@ class PotionsController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    3.times { @potion.potion_ingredients.build }
+  end
 
-  def update; end
+  def update
+    if @potion.update(potion_params)
+      flash[:notice] = "#{@potion.name} updated successfully"
+      redirect_to potion_path(@potion)
+    else
+      flash[:alert] = 'Unable to Update Potion'
+      render :edit
+    end
+  end
 
   def destroy; end
 
@@ -40,8 +51,8 @@ class PotionsController < ApplicationController
       :user_id,
       :effect,
       :potency_level,
-      ingredient_ids: [],
-      potion_ingredients_attributes: %i[ingredient_id quantity id]
+      :image_url,
+      potion_ingredients_attributes: %i[ingredient_id quantity id _destroy]
     )
   end
 
