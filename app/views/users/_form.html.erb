@@ -30,15 +30,17 @@
         <% end %>
       </ul>
     <% end  %>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-    <% unless @user.errors[:password_confirmation].empty?%>
-      <ul>
-        <% @user.errors[:password_confirmation].each do |error|  %>
-          <li><%= error %></li>
-        <% end %>
-      </ul>
-    <% end  %>
+    <% if include_confirmation %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+      <% unless @user.errors[:password_confirmation].empty?%>
+        <ul>
+          <% @user.errors[:password_confirmation].each do |error|  %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      <% end  %>
+    <% end %>
   </div>
   <%= f.submit submit_text %>
 <% end %>

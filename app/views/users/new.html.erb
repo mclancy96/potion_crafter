@@ -1,2 +1,5 @@
 <h1>New User</h1>
-<%= render 'users/form', submit_text: 'Create User' %>
+<div style="padding-bottom: 2em;">
+  <%= link_to 'Back to Login', login_path %><br>
+</div>
+<%= render 'users/form', submit_text: 'Create User', include_confirmation: true %>

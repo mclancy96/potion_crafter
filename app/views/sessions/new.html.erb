@@ -1,2 +1,4 @@
-<%= render 'users/form', path_for_form: login_path, submit_text: 'Login' %>
+<h1>Potion Crafter Welcomes You!</h1>
+<h2>Please Log In Below</h2>
+<%= render 'users/form', path_for_form: login_path, submit_text: 'Login', include_confirmation: false %>
 <p>New to the creepiness? <%= link_to 'Sign up!', new_user_path %></p>

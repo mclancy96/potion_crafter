@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
   end
 
   def handle_invalid_password
-    flash[:alert] = 'Invalid password'
+    flash.now[:alert] = 'Invalid password'
     @user = User.new(username: user_params[:username])
     render :new, status: :unprocessable_entity
   end

@@ -2,8 +2,9 @@
 
 class Potion < ApplicationRecord
   belongs_to :user
-  has_many :potion_ingredients
+  has_many :potion_ingredients, dependent: :destroy
   has_many :ingredients, through: :potion_ingredients
+  has_many :reviews, dependent: :destroy
   accepts_nested_attributes_for :potion_ingredients, allow_destroy: true,
                                                      reject_if: proc { |attrs|
                                                        attrs['ingredient_id'].blank? ||
@@ -33,6 +34,10 @@ class Potion < ApplicationRecord
     current_ingredients = potion_ingredients.reject(&:marked_for_destruction?).map(&:ingredient_id)
     excluded_ids = current_ingredients - [potion_ingredient.ingredient_id]
     Ingredient.where.not(id: excluded_ids)
+  end
+
+  def overall_rating
+    reviews.average(:rating).to_f
   end
 
   private

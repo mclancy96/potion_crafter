@@ -1,14 +1,15 @@
 <h1><%= @potion.name %></h1>
 <img src="<%= @potion.display_image_url %>" alt="" height="400px">
+<h2>Potion Information</h2>
 <p>Potency: <%= @potion.potency_level %> / 10</p>
 <p>Effect: <%= @potion.effect %></p>
 <% if user_is_current_user?(@potion.user) %>
-  <%= link_to "Edit #{@potion.name}", edit_potion_path(@potion) %>
-  <%= link_to "Delete #{@potion.name}", potion_path(@potion), method: :delete%>
+  <%= button_to "Edit #{@potion.name}", edit_potion_path(@potion), method: :get %>
+  <%= button_to "Delete #{@potion.name}", potion_path(@potion), method: :delete%>
 <% end %>
-<h2>Description</h2>
+<h3>Description</h3>
 <p><%= @potion.description %></p>
-<h2>Ingredients</h2>
+<h3>Ingredients</h3>
 <% if @potion.potion_ingredients && @potion.potion_ingredients.length > 0 %>
   <ul>
     <% @potion.potion_ingredients.each do |potion_ingredient| %>
@@ -20,5 +21,19 @@
 <% else %>
   <p>No Ingredients for this Potion</p>
 <% end %>
-<h2>Created By</h2>
+<h3>Created By</h3>
 <p><%= @potion.user.username %></p>
+<hr>
+<h2>Reviews</h2>
+<% if @potion.reviews && @potion.reviews.length > 0 %>
+  Overall Rating: <%= @potion.overall_rating %> / 5
+  <% @potion.reviews.each do |review| %>
+    <div>
+      <p><%= review.rating_stars %></p>
+      <p><%= review.comment %></p>
+      <p><i>- <%= review.user.username %></i></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>No Reviews for this Potion</p>
+<% end %>

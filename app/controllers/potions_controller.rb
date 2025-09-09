@@ -40,7 +40,15 @@ class PotionsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    if @potion.destroy
+      flash[:notice] = "#{@potion.name} deleted successfully"
+      redirect_to potions_path
+    else
+      flash[:alert] = 'Unable to delete Potion'
+      render :show
+    end
+  end
 
   private
 
