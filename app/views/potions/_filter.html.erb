@@ -1,0 +1,19 @@
+<%= form_with method: :get, url: potions_url do |form|%>
+  <span>
+    <%= form.label :filter_potency_level, 'Filter by Potency Level' %>
+    <%= form.select(
+          :filter_potency_level,
+          Potion.potency_level_options.map { |opt| [opt[:name], opt[:id]] },
+          { selected: params[:filter_potency_level] }
+    ) %>
+  </span>
+  <span>
+    <%= form.label :sort_potion_method, 'Sort Potions' %>
+    <%= form.select(
+          :sort_potion_method,
+          Potion.sort_options.map { |opt| [opt[:name], opt[:id]] },
+          { selected: params[:sort_potion_method] }
+    )%>
+  </span>
+  <%= form.submit 'Filter Potions' %>
+<% end %>
