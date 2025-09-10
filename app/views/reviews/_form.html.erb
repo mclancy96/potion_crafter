@@ -1,0 +1,21 @@
+<%= form_with model: [@potion, @review], local: true do |form| %>
+  <% if @review.errors.any? %>
+    <div class="error-messages" style="color: red; margin-bottom: 1em;">
+      <h4><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h4>
+      <ul>
+        <% @review.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= form.label :rating %>
+    <%= form.number_field :rating %>
+  </div>
+  <div>
+    <%= form.label :comment %>
+    <%= form.text_area :comment %>
+  </div>
+  <%= form.submit %>
+<% end %>

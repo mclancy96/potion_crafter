@@ -1,1 +1,5 @@
 <h1>Reviews for <%= link_to @potion.name, potion_path(@potion) %></h1>
+<h2>All Reviews</h2>
+<%= render 'review_list', reviews: @reviews %>
+<h2>Create New Review</h2>
+<%= render 'form' %>

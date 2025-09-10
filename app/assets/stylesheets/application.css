@@ -13,7 +13,7 @@ body {
   z-index: 0;
 }
 
-body::before {
+/* body::before {
   content: '';
   position: fixed;
   top: 0;
@@ -27,7 +27,7 @@ body::before {
   opacity: 0.15;
   pointer-events: none;
   z-index: -1;
-}
+} */
 
 @font-face {
   font-family: 'NothingYouCouldDo';
@@ -35,13 +35,6 @@ body::before {
   font-weight: normal;
   font-style: normal;
 }
-
-/* @font-face {
-  font-family: 'Creepster';
-  src: url('Creepster-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-} */
 
 * {
   font-family: 'NothingYouCouldDo', cursive, sans-serif !important;
@@ -104,4 +97,8 @@ button {
 
 nav {
   border: 2px solid blue;
+}
+
+.spacer-bottom {
+  height: 140px;
 }
