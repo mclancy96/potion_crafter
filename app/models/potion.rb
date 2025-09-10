@@ -41,6 +41,23 @@ class Potion < ApplicationRecord
     avg ? avg.round(2) : 0.0
   end
 
+  def self.potency_level_options
+    [
+      { id: 0, name: "All", start: 0, end: 10 },
+      { id: 1, name: "0-2: Low", start: 0, end: 2 },
+      { id: 2, name: "3-5: Medium", start: 3, end: 5 },
+      { id: 3, name: "6-8: High", start: 6, end: 8 },
+      { id: 4, name: "9-10: Legendary", start: 9, end: 10 },
+    ]
+  end
+
+  def self.by_potency_level_option(option_id)
+    option = potency_level_options.find { |opt| opt[:id] == option_id.to_i }
+    return Potion.all unless option
+
+    where("potency_level >= ? AND potency_level <= ?", option[:start], option[:end])
+  end
+
 private
 
   def no_duplicate_ingredients

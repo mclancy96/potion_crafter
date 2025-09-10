@@ -5,7 +5,7 @@ class PotionsController < ApplicationController
   before_action :set_potion, only: %i[edit show update destroy]
 
   def index
-    @potions = Potion.all
+    @potions = Potion.by_potency_level_option(params[:filter_potency_level])
   end
 
   def new
