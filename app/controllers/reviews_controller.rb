@@ -3,6 +3,7 @@
 class ReviewsController < ApplicationController
   before_action :require_logged_in
   before_action :set_potion
+  before_action :set_review, only: %i[update edit]
 
   def index
     @reviews = @potion.reviews
@@ -26,10 +27,24 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def update
+    if @review.update(review_params)
+      flash[:notice] = "Review updated successfully"
+      redirect_to potion_reviews_path(@potion)
+    else
+      flash[:alert] = "Unable to Update Review"
+      render :edit
+    end
+  end
+
 private
 
   def set_potion
     @potion = Potion.find(params[:potion_id])
+  end
+
+  def set_review
+    @review = Review.find(params[:id])
   end
 
   def review_params
