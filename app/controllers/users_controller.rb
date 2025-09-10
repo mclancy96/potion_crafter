@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  def show
+    @user = User.find(params[:id])
+    @potions = @user.potions
+  end
+
   def new
     @user = User.new
   end
@@ -17,14 +22,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find(params[:id])
-    @potions = @user.potions
-  end
-
 private
 
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation)
+    params.expect(user: %i[username password password_confirmation])
   end
 end

@@ -22,7 +22,7 @@ class Potion < ApplicationRecord
     if image_url.present?
       if %r{\Ahttps?://}.match?(image_url)
         return image_url
-      elsif File.exist?(Rails.root.join("app", "assets", "images", image_url))
+      elsif Rails.root.join("app", "assets", "images", image_url).exist?
         return ActionController::Base.helpers.asset_path(image_url)
       end
     end
@@ -55,7 +55,7 @@ class Potion < ApplicationRecord
     option = potency_level_options.find { |opt| opt[:id] == option_id.to_i }
     return Potion.all unless option
 
-    where("potency_level >= ? AND potency_level <= ?", option[:start], option[:end])
+    where(potency_level: (option[:start])..(option[:end]))
   end
 
   def self.sort_options
@@ -82,7 +82,7 @@ class Potion < ApplicationRecord
 private
 
   def no_duplicate_ingredients
-    ids = potion_ingredients.map(&:ingredient_id).reject(&:blank?)
+    ids = potion_ingredients.map(&:ingredient_id).compact_blank
     return unless ids.size != ids.uniq.size
 
     errors.add(:potion_ingredients, "can't have duplicate ingredients")
