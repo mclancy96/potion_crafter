@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_08_184555) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_10_172614) do
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "rarity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_ingredients_on_name", unique: true
   end
 
   create_table "potion_ingredients", force: :cascade do |t|
@@ -38,6 +39,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_08_184555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
+    t.index ["name"], name: "index_potions_on_name", unique: true
     t.index ["user_id"], name: "index_potions_on_user_id"
   end
 
@@ -57,6 +59,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_08_184555) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "potion_ingredients", "ingredients"
