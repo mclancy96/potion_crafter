@@ -5,7 +5,7 @@
 <p><strong>Description:</strong> <%= @ingredient.description %></p>
 <p><strong>Rarity:</strong> <%= @ingredient.rarity %></p>
 <h2>Potions Requiring <%= @ingredient.name %></h2>
-<% if @ingredient.potion_ingredients && @ingredient.potion_ingredients.length.positive? %>
+<% if @ingredient.potion_ingredients.any? %>
   <% @ingredient.potion_ingredients.each do |potion_ingredient| %>
     <ul>
       <li>

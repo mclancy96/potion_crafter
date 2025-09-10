@@ -17,7 +17,6 @@ class PotionsController < ApplicationController
     @potion = Potion.new(potion_params)
     @potion.user_id = current_user.id
     if @potion.save
-      puts "Potion created"
       flash[:notice] = "#{@potion.name} created successfully"
       redirect_to potion_path(@potion)
     else

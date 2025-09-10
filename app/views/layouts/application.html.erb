@@ -24,6 +24,7 @@
       <div class="flash <%= key %>"><%= message %></div>
     <% end %>
     <%= yield %>
+    <div class="spacer-bottom"></div>
     <script>
       document.addEventListener("turbo:render", function() {
         setTimeout(function() {

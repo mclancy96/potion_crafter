@@ -10,7 +10,7 @@
 <h3>Description</h3>
 <p><%= @potion.description %></p>
 <h3>Ingredients</h3>
-<% if @potion.potion_ingredients && @potion.potion_ingredients.length > 0 %>
+<% if @potion.potion_ingredients.any? %>
   <ul>
     <% @potion.potion_ingredients.each do |potion_ingredient| %>
       <li>
@@ -25,15 +25,10 @@
 <p><%= link_to @potion.user.username, user_path(@potion.user) %></p>
 <hr>
 <h2>Reviews</h2>
-<% if @potion.reviews && @potion.reviews.length > 0 %>
-  Overall Rating: <%= @potion.overall_rating %> / 5
-  <% @potion.reviews.each do |review| %>
-    <div>
-      <p><%= review.rating_stars %></p>
-      <p><%= review.comment %></p>
-      <p><i>- <%= link_to review.user.username, user_path(review.user) %></i></p>
-    </div>
-  <% end %>
+<% if @potion.reviews.any? %>
+  <p>Overall Rating: <%= @potion.overall_rating %> / 5</p>
+  <%= render 'reviews/review_list', reviews: @potion.reviews.most_recent %>
+  <p><%= link_to 'See All Reviews', potion_reviews_path(@potion) %></p>
 <% else %>
   <p>No Reviews for this Potion</p>
 <% end %>
