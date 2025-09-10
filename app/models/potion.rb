@@ -58,6 +58,27 @@ class Potion < ApplicationRecord
     where("potency_level >= ? AND potency_level <= ?", option[:start], option[:end])
   end
 
+  def self.sort_options
+    [
+      { id: 0, name: "Default", attr: :id, direction: :asc },
+      { id: 1, name: "Name A -> Z", attr: :name, direction: :asc },
+      { id: 2, name: "Name Z -> A", attr: :name, direction: :desc },
+      { id: 3, name: "Potency Level 0 -> 9", attr: :potency_level, direction: :asc },
+      { id: 4, name: "Potency Level 9 -> 0", attr: :potency_level, direction: :desc },
+    ]
+  end
+
+  def self.sort_by_option(option_id, potions = Potion.all)
+    option = sort_options.find { |opt| opt[:id] == option_id.to_i }
+    return potions unless option
+
+    if option[:attr] == :name
+      potions.order("LOWER(name) #{option[:direction]}")
+    else
+      potions.order(option[:attr] => option[:direction])
+    end
+  end
+
 private
 
   def no_duplicate_ingredients

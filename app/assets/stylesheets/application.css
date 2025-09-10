@@ -13,21 +13,17 @@ body {
   z-index: 0;
 }
 
-/* body::before {
+body::before {
   content: '';
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('/cauldron.png');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
   opacity: 0.15;
   pointer-events: none;
   z-index: -1;
-} */
+}
 
 @font-face {
   font-family: 'NothingYouCouldDo';

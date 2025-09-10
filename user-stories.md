@@ -59,7 +59,7 @@
 ## Sorting & Scopes
 
 - **As a visitor**, I want to filter potions by potency level so that I can find the most powerful ones.
-- **As a visitor**, I want to search ingredients by rarity so that I can discover exotic potion components.
+- **As a visitor**, I want to sort potions by rarity so that I can discover exotic potions.
 
 ---
 
