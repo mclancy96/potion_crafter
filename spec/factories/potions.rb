@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :potion do
-    name { "Magic Jumping Beans" }
+    sequence(:name) { |n| "potion#{n}" }
     description { "A magical jumping bean" }
     user
     effect { 'Makes you jump' }

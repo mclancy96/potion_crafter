@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :ingredient do
-    name { "Mandrake" }
+    sequence(:name) { |n| "ingredient#{n}" }
     description { "A magical root" }
     rarity { 5 }
   end

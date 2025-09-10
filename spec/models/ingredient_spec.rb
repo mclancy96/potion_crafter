@@ -28,8 +28,8 @@ RSpec.describe Ingredient, type: :model do
 		end
 
     it 'is invalid with duplicate name' do
-      create(:ingredient)
-      new_ingredient = build(:ingredient)
+      create(:ingredient, name: 'Bob')
+      new_ingredient = build(:ingredient, name: 'Bob')
       expect(new_ingredient).not_to be_valid
     end
 
