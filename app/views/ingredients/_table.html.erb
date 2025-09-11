@@ -1,23 +1,27 @@
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Rarity</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @ingredients.each do |ingredient| %>
+<div class="table-responsive">
+  <table class="table table-dark table-hover align-middle">
+    <thead class="table-light">
       <tr>
-        <td><%= link_to ingredient.name, ingredient_path(ingredient) %></td>
-        <td><%= ingredient.description %></td>
-        <td><%= ingredient.rarity %></td>
-        <td>
-          <%= link_to 'Edit', edit_ingredient_path(ingredient) %> |
-          <%= link_to 'Delete', ingredient_path(ingredient), method: :delete %>
-        </td>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Rarity</th>
+        <th colspan="2" class="text-center">Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @ingredients.each do |ingredient| %>
+        <tr>
+          <td><%= link_to ingredient.name, ingredient_path(ingredient), class: "link-light" %></td>
+          <td><%= ingredient.description %></td>
+          <td><%= ingredient.rarity %></td>
+          <td class="text-center">
+            <%= button_to('Edit', edit_ingredient_path(ingredient), method: :get, class:'btn btn-light btn-sm') %>
+          </td>
+          <td class="text-center">
+            <%= button_to('Delete', ingredient_path(ingredient), method: :delete, class:'btn btn-light btn-sm') %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

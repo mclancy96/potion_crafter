@@ -37,7 +37,7 @@ body::before {
   color: white;
 }
 
-body {
+body:not(.flash) {
   cursor: url('/broom.png'), pointer;
   background: rgba(0, 0, 0, 0.9);
   min-height: 100vh;
@@ -68,31 +68,13 @@ body::after {
   }
 }
 
-input[type='submit'] {
-  background: black;
-}
-
 input:not([type='submit']),
 textarea,
 select,
-button {
-  color: black;
-}
-
-.alert {
-  background: lightcoral;
-}
-
-.success {
-  background: lightgreen;
-}
-
+.alert,
+.success,
 .notice {
-  background: lightblue;
-}
-
-nav {
-  border: 2px solid blue;
+  color: black;
 }
 
 .spacer-bottom {

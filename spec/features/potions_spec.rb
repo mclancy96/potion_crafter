@@ -18,7 +18,7 @@ RSpec.feature "Potions", type: :feature do
     fill_in "Description", with: "A powerful brew"
     fill_in "Effect", with: "Invisibility"
     fill_in "Potency level", with: 5
-    fill_in "Image url", with: "magic.png"
+    fill_in "Image URL", with: "magic.png"
     click_button "Create Potion"
     expect(page).to have_content("Magic Potion")
   end

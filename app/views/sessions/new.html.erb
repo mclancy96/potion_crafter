@@ -1,4 +1,10 @@
-<h1>Potion Crafter Welcomes You!</h1>
-<h2>Please Log In Below</h2>
-<%= render 'users/form', path_for_form: login_path, submit_text: 'Login', include_confirmation: false %>
-<p>New to the creepiness? <%= link_to 'Sign up!', new_user_path %></p>
+<div class="d-flex flex-column justify-content-center align-items-center min-vh-100 text-center">
+  <h1 class="display-1 mb-5">Potion Crafter Welcomes You!</h1>
+  <h2>Please Log In Below</h2>
+  <div>
+    <%= render 'users/form', path_for_form: login_path, submit_text: 'Login', include_confirmation: false %>
+  </div>
+  <div class="mt-5">
+    <p>New to the creepiness? <%= link_to 'Sign up!', new_user_path %></p>
+  </div>
+</div>

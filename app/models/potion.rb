@@ -16,7 +16,8 @@ class Potion < ApplicationRecord
 
   validates :name, :description, :effect, :potency_level, :image_url, presence: true
   validates :name, uniqueness: { case_sensitive: false }
-  validates :potency_level, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10 }
+  validates :potency_level,
+            numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10 }
 
   def display_image_url
     if image_url.present?
@@ -43,11 +44,11 @@ class Potion < ApplicationRecord
 
   def self.potency_level_options
     [
-      { id: 0, name: "All", start: 0, end: 10 },
-      { id: 1, name: "0-2: Low", start: 0, end: 2 },
-      { id: 2, name: "3-5: Medium", start: 3, end: 5 },
-      { id: 3, name: "6-8: High", start: 6, end: 8 },
-      { id: 4, name: "9-10: Legendary", start: 9, end: 10 },
+      { id: 0, name: "All", start: 0, end: 10, short_name: "All" },
+      { id: 1, name: "0-2: Low", start: 0, end: 2, short_name: "Low" },
+      { id: 2, name: "3-5: Medium", start: 3, end: 5, short_name: "Medium" },
+      { id: 3, name: "6-8: High", start: 6, end: 8, short_name: "High" },
+      { id: 4, name: "9-10: Legendary", start: 9, end: 10, short_name: "Legendary" },
     ]
   end
 
@@ -76,6 +77,47 @@ class Potion < ApplicationRecord
       potions.order("LOWER(name) #{option[:direction]}")
     else
       potions.order(option[:attr] => option[:direction])
+    end
+  end
+
+  def potency_level_option
+    self.class.potency_level_options.reject { |opt| opt[:short_name] == "All" }
+        .find { |opt| potency_level.between?(opt[:start], opt[:end]) }
+  end
+
+  def potency_level_short_name
+    option = potency_level_option
+    option ? option[:short_name] : "Unknown"
+  end
+
+  def potency_level_badge_color
+    option = potency_level_option
+    case option&.dig(:short_name)
+    when "Low"
+      "secondary"
+    when "Medium"
+      "info"
+    when "High"
+      "warning"
+    when "Legendary"
+      "danger"
+    else
+      "primary"
+    end
+  end
+
+  def overall_rating_badge_color
+    case overall_rating
+    when 4.5..5
+      "success"
+    when 3.5...4.5
+      "info"
+    when 2.5...3.5
+      "warning"
+    when 1...2.5
+      "danger"
+    else
+      "secondary"
     end
   end
 
