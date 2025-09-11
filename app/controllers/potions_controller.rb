@@ -57,14 +57,14 @@ class PotionsController < ApplicationController
 private
 
   def potion_params
-    params.require(:potion).permit(
-      :name,
-      :description,
-      :user_id,
-      :effect,
-      :potency_level,
-      :image_url,
-      potion_ingredients_attributes: %i[ingredient_id quantity id _destroy]
+    params.expect(
+      potion: [:name,
+               :description,
+               :user_id,
+               :effect,
+               :potency_level,
+               :image_url,
+               { potion_ingredients_attributes: %i[ingredient_id quantity id _destroy] }]
     )
   end
 
