@@ -11,6 +11,7 @@ class Review < ApplicationRecord
                             less_than_or_equal_to: 5 }
 
   scope :most_recent, ->(limit = 3) { order(created_at: :desc).limit(limit) }
+  scope :recent_for_user, ->(user, limit = 5) { where(user: user).order(created_at: :desc).limit(limit) }
 
   def rating_stars
     "⭐️" * rating

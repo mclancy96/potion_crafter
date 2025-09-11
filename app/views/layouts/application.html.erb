@@ -21,7 +21,8 @@
       <%= render 'layouts/navbar' %>
     <% end %>
     <% flash.each do |key, message| %>
-      <div class="flash <%= key %>"><%= message %></div>
+      <% alert_type = key == 'alert' ? 'danger' : 'info' %>
+      <div class="flash alert alert-<%= alert_type %>" role="alert"><%= message %></div>
     <% end %>
     <div class="container text-white mt-3">
       <%= yield %>

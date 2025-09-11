@@ -1,3 +1,53 @@
-<div class="text-center">
+<div class="text-center mb-4">
   <h1>Greetings, <%= current_user.username %>!</h1>
+</div>
+
+<div class="row mb-4">
+  <div class="col-md-4">
+    <h2>Your Potions</h2>
+    <% if current_user.potions.any? %>
+      <ul class="list-group">
+        <% current_user.potions.each do |potion| %>
+          <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+            <%= link_to potion.name, potion_path(potion), class: "link-light" %>
+            <span class="badge bg-secondary">Potency: <%= potion.potency_level %></span>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>You haven't created any potions yet.</p>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <h2>Recent Reviews</h2>
+    <% recent_reviews = Review.recent_for_user(current_user) %>
+    <% if recent_reviews.any? %>
+      <ul class="list-group">
+        <% recent_reviews.each do |review| %>
+          <li class="list-group-item bg-dark text-white">
+            <strong><%= link_to review.potion.name, potion_reviews_path(review.potion), class: 'link-light' %></strong>:
+            <p><%= review.comment %></p>
+            Rating: <%= review.rating_stars %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No recent reviews.</p>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <h2>Your Ingredients</h2>
+    <% user_ingredients = current_user.used_ingredients %>
+    <% if user_ingredients.any? %>
+      <ul class="list-group">
+        <% user_ingredients.each do |ingredient| %>
+          <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+            <%= link_to ingredient.name, ingredient_path(ingredient), class: 'link-light' %> <span class="badge bg-secondary ms-auto">Rarity: <%= ingredient.rarity %></span>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>You haven't used any ingredients yet.</p>
+    <% end %>
+  </div>
 </div>

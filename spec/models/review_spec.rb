@@ -148,4 +148,34 @@ RSpec.describe Review, type: :model do
       expect(review.formatted_updated_at).to eq(time.localtime.strftime("%b %d, %Y %I:%M %p"))
     end
   end
+
+    describe '.recent_for_user' do
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
+    let!(:review1) { create(:review, user: user, created_at: 3.days.ago) }
+    let!(:review2) { create(:review, user: user, created_at: 2.days.ago) }
+    let!(:review3) { create(:review, user: user, created_at: 1.day.ago) }
+    let!(:review4) { create(:review, user: other_user, created_at: 1.day.ago) }
+
+    it 'returns only reviews for the given user' do
+      expect(Review.recent_for_user(user)).to all(have_attributes(user_id: user.id))
+    end
+
+    it 'returns reviews in descending order of creation' do
+      reviews = Review.recent_for_user(user)
+      expect(reviews).to eq([review3, review2, review1])
+    end
+
+    it 'limits the number of reviews returned (default 5)' do
+      expect(Review.recent_for_user(user).count).to be <= 5
+    end
+
+    it 'respects a custom limit' do
+      expect(Review.recent_for_user(user, 2)).to eq([review3, review2])
+    end
+
+    it 'does not include reviews from other users' do
+      expect(Review.recent_for_user(user)).not_to include(review4)
+    end
+  end
 end

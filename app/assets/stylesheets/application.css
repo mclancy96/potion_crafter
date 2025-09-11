@@ -37,7 +37,7 @@ body::before {
   color: white;
 }
 
-body {
+body:not(.flash) {
   cursor: url('/broom.png'), pointer;
   background: rgba(0, 0, 0, 0.9);
   min-height: 100vh;
@@ -75,18 +75,6 @@ select,
 .success,
 .notice {
   color: black;
-}
-
-.alert {
-  background: lightcoral;
-}
-
-.success {
-  background: lightgreen;
-}
-
-.notice {
-  background: lightblue;
 }
 
 .spacer-bottom {
