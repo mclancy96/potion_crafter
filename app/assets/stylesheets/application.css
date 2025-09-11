@@ -70,7 +70,10 @@ body::after {
 
 input:not([type='submit']),
 textarea,
-select {
+select,
+.alert,
+.success,
+.notice {
   color: black;
 }
 
@@ -84,10 +87,6 @@ select {
 
 .notice {
   background: lightblue;
-}
-
-nav {
-  border: 2px solid blue;
 }
 
 .spacer-bottom {

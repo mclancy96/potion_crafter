@@ -1,37 +1,45 @@
-<%= form_with model: @potion, local: true do |form| %>
+<%= form_with model: @potion, local: true, class: "row g-3" do |form| %>
   <%= form.hidden_field :user_id %>
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="col-md-6">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
-  <div>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="col-md-6">
+    <%= form.label :effect, class: "form-label" %>
+    <%= form.text_field :effect, class: "form-control" %>
   </div>
-  <div>
-    <%= form.label :effect %>
-    <%= form.text_field :effect %>
+  <div class="col-md-12">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control", rows: 3 %>
   </div>
-  <div>
-    <%= form.label :potency_level %>
-    <%= form.number_field :potency_level, max: 10, min: 1 %>
+  <div class="col-md-6">
+    <%= form.label :potency_level, class: "form-label" %>
+    <%= form.number_field :potency_level, max: 10, min: 1, class: "form-control" %>
   </div>
-  <div>
-    <%= form.label :image_url %>
-    <%= form.text_field :image_url %>
+  <div class="col-md-6">
+    <%= form.label :image_url, "Image URL", class: "form-label" %>
+    <%= form.text_field :image_url, class: "form-control" %>
   </div>
   <div>
     <h3>Ingredients</h3>
     <%= form.fields_for :potion_ingredients do |ingredient_form| %>
-      <div class="ingredient-row" style="display: flex; align-items: center; gap: 8px;">
-        <%= ingredient_form.label :ingredient_id, "Ingredient" %>
-        <%= ingredient_form.collection_select :ingredient_id, @potion.ingredient_options(ingredient_form.object), :id, :name, { prompt: "Select an ingredient" }, { class: "ingredient-select" } %>
-        <%= ingredient_form.label :quantity %>
-        <%= ingredient_form.text_field :quantity, placeholder: "e.g., 2 drops, 1 pinch" %>
-        <%= ingredient_form.hidden_field :_destroy, value: false, class: "destroy-flag" %>
-        <span class="remove-ingredient" style="cursor:pointer; color:#c00; font-size:1.2em;" title="Remove">&#128465;</span>
+      <div class="row align-items-center ingredient-row" >
+        <div class="col-md-5">
+          <%= ingredient_form.label :ingredient_id, "Ingredient", class: "form-label" %>
+          <%= ingredient_form.collection_select :ingredient_id, @potion.ingredient_options(ingredient_form.object), :id, :name, { prompt: "Select an ingredient" }, { class: "form-select" } %>
+        </div>
+        <div class="col-md-5">
+          <%= ingredient_form.label :quantity, class: "form-label" %>
+          <%= ingredient_form.text_field :quantity, placeholder: "e.g., 2 drops, 1 pinch", class: 'form-control' %>
+        </div>
+        <div class="col-md-2">
+          <span class="remove-ingredient" style="cursor:pointer; color:#c00; font-size:1.2em;" title="Remove"><i class="bi bi-trash-fill"></i></span>
+          <%= ingredient_form.hidden_field :_destroy, value: false, class: "destroy-flag" %>
+        </div>
       </div>
     <% end %>
   </div>
-  <%= form.submit %>
+  <div class="col-12 text-center">
+    <%= form.submit nil, class: "btn btn-primary" %>
+  </div>
 <% end %>
