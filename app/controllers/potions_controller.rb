@@ -9,7 +9,9 @@ class PotionsController < ApplicationController
     @potions = Potion.sort_by_option(params[:sort_potion_method], filtered_potions)
   end
 
-  def show; end
+  def show
+    @review = Review.new
+  end
 
   def new
     @potion = Potion.new
