@@ -1,25 +1,27 @@
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>User</th>
-      <th>Effect</th>
-      <th>Potency</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @potions.each do |potion| %>
+<div class="table-responsive">
+  <table class="table table-dark table-hover align-middle">
+    <thead class="table-light">
       <tr>
-        <td><%= link_to potion.name, potion_path(potion) %></td>
-        <td><%= potion.description %></td>
-        <td><%= link_to potion.user.username, user_path(potion.user) %></td>
-        <td><%= potion.effect %></td>
-        <td><%= potion.potency_level %> / 10</td>
-        <td><%= user_is_current_user?(potion.user) ? button_to('Edit', edit_potion_path(potion), method: :get) : '' %></td>
-        <td><%= user_is_current_user?(potion.user) ? button_to('Delete', potion_path(potion), method: :delete) : '' %></td>
+        <th>Name</th>
+        <th>Description</th>
+        <th>User</th>
+        <th>Effect</th>
+        <th>Potency</th>
+        <th colspan="2" class="text-center">Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @potions.each do |potion| %>
+        <tr>
+          <td><%= link_to potion.name, potion_path(potion), class:"link-light" %></td>
+          <td><%= potion.description %></td>
+          <td><%= link_to potion.user.username, user_path(potion.user), class:"link-light" %></td>
+          <td><%= potion.effect %></td>
+          <td><%= potion.potency_level %> / 10</td>
+          <td><%= user_is_current_user?(potion.user) ? button_to('Edit', edit_potion_path(potion), method: :get, class:'btn btn-secondary btn-sm') : '' %></td>
+          <td><%= user_is_current_user?(potion.user) ? button_to('Delete', potion_path(potion), method: :delete, class:'btn btn-secondary btn-sm') : '' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
