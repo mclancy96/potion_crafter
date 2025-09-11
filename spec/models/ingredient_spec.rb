@@ -53,4 +53,38 @@ RSpec.describe Ingredient, type: :model do
 			expect(ingredient).not_to be_valid
 		end
 	end
+
+		describe '#rarity_badge_color' do
+		it 'returns danger for rarity 5' do
+			ingredient = build(:ingredient, rarity: 5)
+			expect(ingredient.rarity_badge_color).to eq('danger')
+		end
+
+		it 'returns warning for rarity 4' do
+			ingredient = build(:ingredient, rarity: 4)
+			expect(ingredient.rarity_badge_color).to eq('warning')
+		end
+
+		it 'returns info for rarity 3' do
+			ingredient = build(:ingredient, rarity: 3)
+			expect(ingredient.rarity_badge_color).to eq('info')
+		end
+
+		it 'returns primary for rarity 2' do
+			ingredient = build(:ingredient, rarity: 2)
+			expect(ingredient.rarity_badge_color).to eq('primary')
+		end
+
+		it 'returns secondary for rarity 1' do
+			ingredient = build(:ingredient, rarity: 1)
+			expect(ingredient.rarity_badge_color).to eq('secondary')
+		end
+
+		it 'returns secondary for rarity outside 1-5' do
+			ingredient = build(:ingredient, rarity: 0)
+			expect(ingredient.rarity_badge_color).to eq('secondary')
+			ingredient = build(:ingredient, rarity: 6)
+			expect(ingredient.rarity_badge_color).to eq('secondary')
+		end
+	end
 end

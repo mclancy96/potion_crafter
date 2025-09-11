@@ -290,5 +290,79 @@ RSpec.describe Potion, type: :model do
       expect(average_rating).to eql(3.33)
     end
   end
+    describe '#potency_level_short_name' do
+    it 'returns Low for potency_level 1' do
+      potion = build(:potion, potency_level: 1)
+      expect(potion.potency_level_short_name).to eq('Low')
+    end
+    it 'returns Medium for potency_level 4' do
+      potion = build(:potion, potency_level: 4)
+      expect(potion.potency_level_short_name).to eq('Medium')
+    end
+    it 'returns High for potency_level 7' do
+      potion = build(:potion, potency_level: 7)
+      expect(potion.potency_level_short_name).to eq('High')
+    end
+    it 'returns Legendary for potency_level 10' do
+      potion = build(:potion, potency_level: 10)
+      expect(potion.potency_level_short_name).to eq('Legendary')
+    end
+    it 'returns Unknown for out-of-range potency_level' do
+      potion = build(:potion, potency_level: 11)
+      expect(potion.potency_level_short_name).to eq('Unknown')
+    end
+  end
+
+  describe '#potency_level_badge_color' do
+    it 'returns secondary for Low' do
+      potion = build(:potion, potency_level: 1)
+      expect(potion.potency_level_badge_color).to eq('secondary')
+    end
+    it 'returns info for Medium' do
+      potion = build(:potion, potency_level: 4)
+      expect(potion.potency_level_badge_color).to eq('info')
+    end
+    it 'returns warning for High' do
+      potion = build(:potion, potency_level: 7)
+      expect(potion.potency_level_badge_color).to eq('warning')
+    end
+    it 'returns danger for Legendary' do
+      potion = build(:potion, potency_level: 10)
+      expect(potion.potency_level_badge_color).to eq('danger')
+    end
+    it 'returns primary for out-of-range' do
+      potion = build(:potion, potency_level: 11)
+      expect(potion.potency_level_badge_color).to eq('primary')
+    end
+  end
+
+  describe '#overall_rating_badge_color' do
+    it 'returns success for rating 5' do
+      potion = build(:potion)
+      allow(potion).to receive(:overall_rating).and_return(5)
+      expect(potion.overall_rating_badge_color).to eq('success')
+    end
+    it 'returns info for rating 4' do
+      potion = build(:potion)
+      allow(potion).to receive(:overall_rating).and_return(4)
+      expect(potion.overall_rating_badge_color).to eq('info')
+    end
+    it 'returns warning for rating 3' do
+      potion = build(:potion)
+      allow(potion).to receive(:overall_rating).and_return(3)
+      expect(potion.overall_rating_badge_color).to eq('warning')
+    end
+    it 'returns danger for rating 2' do
+      potion = build(:potion)
+      allow(potion).to receive(:overall_rating).and_return(2)
+      expect(potion.overall_rating_badge_color).to eq('danger')
+    end
+    it 'returns secondary for rating 0' do
+      potion = build(:potion)
+      allow(potion).to receive(:overall_rating).and_return(0)
+      expect(potion.overall_rating_badge_color).to eq('secondary')
+    end
+  end
+
 end
 
