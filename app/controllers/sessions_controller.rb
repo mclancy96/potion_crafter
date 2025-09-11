@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   def new
     redirect_to root_path if logged_in?
     @user = User.new
+    @no_spacer = true
   end
 
   def create
