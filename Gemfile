@@ -24,7 +24,12 @@ group :development, :test do
   gem "brakeman", require: false
   gem "pry"
   gem "rubocop", require: false
+  gem "rubocop-capybara", require: false
+  gem "rubocop-factory_bot", require: false
   gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
+  gem "rubocop-rspec_rails", require: false
 end
 
 group :development do
@@ -33,7 +38,9 @@ end
 
 group :test do
   gem "capybara"
+  gem "factory_bot_rails"
   gem "rspec"
   gem "rspec-rails", "~> 8.0"
   gem "selenium-webdriver"
+  gem "shoulda-matchers", "~> 5.0"
 end

@@ -48,6 +48,6 @@ private
   end
 
   def review_params
-    params.require(:review).permit(:potion_id, :comment, :rating)
+    params.expect(review: %i[potion_id comment rating])
   end
 end

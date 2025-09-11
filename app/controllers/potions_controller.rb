@@ -9,8 +9,16 @@ class PotionsController < ApplicationController
     @potions = Potion.sort_by_option(params[:sort_potion_method], filtered_potions)
   end
 
+  def show
+    @review = Review.new
+  end
+
   def new
     @potion = Potion.new
+    3.times { @potion.potion_ingredients.build }
+  end
+
+  def edit
     3.times { @potion.potion_ingredients.build }
   end
 
@@ -24,12 +32,6 @@ class PotionsController < ApplicationController
       flash.now[:alert] = "Unable to Create Potion"
       render :new
     end
-  end
-
-  def show; end
-
-  def edit
-    3.times { @potion.potion_ingredients.build }
   end
 
   def update
@@ -55,14 +57,14 @@ class PotionsController < ApplicationController
 private
 
   def potion_params
-    params.require(:potion).permit(
-      :name,
-      :description,
-      :user_id,
-      :effect,
-      :potency_level,
-      :image_url,
-      potion_ingredients_attributes: %i[ingredient_id quantity id _destroy]
+    params.expect(
+      potion: [:name,
+               :description,
+               :user_id,
+               :effect,
+               :potency_level,
+               :image_url,
+               { potion_ingredients_attributes: %i[ingredient_id quantity id _destroy] }]
     )
   end
 

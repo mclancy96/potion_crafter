@@ -1,6 +1,11 @@
 # These rules apply to the Nitro Umbrella app and all components.
-
 plugins:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-capybara
+  - rubocop-factory_bot
+  - rubocop-rspec_rails
   - rubocop-performance
 
 AllCops:
@@ -15,6 +20,19 @@ AllCops:
     - 'config/**/*'
     - 'bin/**'
     - 'Gemfile.lock'
+  NewCops: enable
+
+Rails:
+  Enabled: true
+
+RSpec:
+  Enabled: true
+
+FactoryBot:
+  Enabled: true
+
+Capybara:
+  Enabled: true
 
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
@@ -123,3 +141,6 @@ Style/TrailingCommaInArrayLiteral:
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
+
+Rails/I18nLocaleTexts:
+  Enabled: false

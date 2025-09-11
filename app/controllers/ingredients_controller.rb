@@ -14,6 +14,8 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.new
   end
 
+  def edit; end
+
   def create
     @ingredient = Ingredient.new(ingredient_params)
     if @ingredient.save
@@ -22,8 +24,6 @@ class IngredientsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
-  def edit; end
 
   def update
     if @ingredient.update(ingredient_params)
@@ -46,6 +46,6 @@ private
   end
 
   def ingredient_params
-    params.require(:ingredient).permit(:name, :description, :rarity)
+    params.expect(ingredient: %i[name description rarity])
   end
 end
