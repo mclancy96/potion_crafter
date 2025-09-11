@@ -1,36 +1,61 @@
-<h1><%= @potion.name %></h1>
-<img src="<%= @potion.display_image_url %>" alt="" height="400px">
-<h2>Potion Information</h2>
-<p>Potency: <%= @potion.potency_level %> / 10</p>
-<p>Effect: <%= @potion.effect %></p>
-<% if user_is_current_user?(@potion.user) %>
-  <%= button_to "Edit #{@potion.name}", edit_potion_path(@potion), method: :get %>
-  <%= button_to "Delete #{@potion.name}", potion_path(@potion), method: :delete%>
-<% end %>
-<h3>Description</h3>
-<p><%= @potion.description %></p>
-<h3>Ingredients</h3>
-<% if @potion.potion_ingredients.any? %>
-  <ul>
-    <% @potion.potion_ingredients.each do |potion_ingredient| %>
-      <li>
-        <%= potion_ingredient.quantity %> of <%= link_to potion_ingredient.ingredient.name, ingredient_path(potion_ingredient.ingredient) %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No Ingredients for this Potion</p>
-<% end %>
-<h3>Created By</h3>
-<p><%= link_to @potion.user.username, user_path(@potion.user) %></p>
-<hr>
-<h2>Reviews</h2>
-<% if @potion.reviews.any? %>
-  <p>Overall Rating: <%= @potion.overall_rating %> / 5</p>
-  <%= render 'reviews/review_list', reviews: @potion.reviews.most_recent %>
-  <p><%= link_to 'See All Reviews', potion_reviews_path(@potion) %></p>
-<% else %>
-  <p>No Reviews for this Potion</p>
-<% end %>
-<h3>New Review</h3>
-<%= render 'reviews/form' %>
+<div class="container py-4">
+  <div class="row mb-4">
+    <div class="col-md-6 text-center">
+      <h1 class="display-4 mb-3"><%= @potion.name %></h1>
+      <img src="<%= @potion.display_image_url %>" alt="" class="img-fluid rounded shadow" style="max-height:400px;">
+    </div>
+    <div class="col-md-6">
+      <h2 class="h4">Potion Information</h2>
+      <ul class="list-group mb-3">
+        <li class="list-group-item bg-dark text-white">
+          Potency:
+          <span class="badge bg-<%= @potion.potency_level_badge_color %>">
+            <%= @potion.potency_level %> / 10 (<%= @potion.potency_level_short_name %>)
+          </span>
+        </li>
+        <li class="list-group-item bg-dark text-white">Effect: <%= @potion.effect %></li>
+      </ul>
+      <% if user_is_current_user?(@potion.user) %>
+        <div class="d-flex gap-2 mb-3">
+          <%= button_to "Edit #{@potion.name}", edit_potion_path(@potion), method: :get, class: "btn btn-info" %>
+          <%= button_to "Delete #{@potion.name}", potion_path(@potion), method: :delete, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+      <h3 class="h5 mt-4">Description</h3>
+      <p class="bg-dark text-white p-3 rounded"><%= @potion.description %></p>
+      <h3 class="h5 mt-4">Ingredients</h3>
+      <% if @potion.potion_ingredients.any? %>
+        <ul class="list-group mb-3">
+          <% @potion.potion_ingredients.each do |potion_ingredient| %>
+            <li class="list-group-item bg-dark text-white">
+              <%= potion_ingredient.quantity %> of <%= link_to potion_ingredient.ingredient.name, ingredient_path(potion_ingredient.ingredient), class: "text-info" %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No Ingredients for this Potion</p>
+      <% end %>
+      <h3 class="h5 mt-4">Created By</h3>
+      <p><%= link_to @potion.user.username, user_path(@potion.user), class: "text-info" %></p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="h4">Reviews</h2>
+      <% if @potion.reviews.any? %>
+        <p>Overall Rating: <span class="badge bg-<%= @potion.overall_rating_badge_color %>"><%= @potion.overall_rating %> / 5</span></p>
+        <%= render 'reviews/review_list', reviews: @potion.reviews.most_recent %>
+        <p class="text-center"><%= link_to 'See All Reviews', potion_reviews_path(@potion), class: "btn btn-info btn-lg" %></p>
+      <% else %>
+        <p>No Reviews for this Potion</p>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <h3 class="h5">New Review</h3>
+      <div class="card bg-dark text-white p-3">
+        <%= render 'reviews/form' %>
+      </div>
+    </div>
+  </div>
+</div>

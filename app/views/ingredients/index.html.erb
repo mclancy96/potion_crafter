@@ -1,3 +1,9 @@
-<h1>Ingredients</h1>
-<%= link_to 'New Ingredient', new_ingredient_path, class: 'btn' %>
+<div class="d-flex mb-3">
+  <div class="me-auto ms-auto p-2">
+    <h1>Ingredients</h1>
+  </div>
+  <div class="p-2">
+    <%= button_to 'New Ingredient', new_ingredient_path, class: 'btn btn-info', method: :get %>
+  </div>
+</div>
 <%= render 'table' %>
