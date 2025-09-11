@@ -68,14 +68,9 @@ body::after {
   }
 }
 
-input[type='submit'] {
-  background: black;
-}
-
 input:not([type='submit']),
 textarea,
-select,
-button {
+select {
   color: black;
 }
 
