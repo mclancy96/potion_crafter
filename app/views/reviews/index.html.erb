@@ -1,4 +1,4 @@
-<h1 class="text-center">Reviews for <%= link_to @potion.name, potion_path(@potion) %></h1>
+<h1 class="text-center">Reviews for <%= link_to @potion.name, potion_path(@potion), class: 'link-light' %></h1>
 <%= render 'review_list', reviews: @reviews %>
 <h2 class="m-2 text-center">Create New Review</h2>
 <%= render 'form' %>

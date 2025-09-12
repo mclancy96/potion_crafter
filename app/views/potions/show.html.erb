@@ -28,7 +28,7 @@
         <ul class="list-group mb-3">
           <% @potion.potion_ingredients.each do |potion_ingredient| %>
             <li class="list-group-item bg-dark text-white">
-              <%= potion_ingredient.quantity %> of <%= link_to potion_ingredient.ingredient.name, ingredient_path(potion_ingredient.ingredient), class: "text-info" %>
+              <%= potion_ingredient.quantity %> of <%= link_to potion_ingredient.ingredient.name, ingredient_path(potion_ingredient.ingredient), class: "link-light" %>
             </li>
           <% end %>
         </ul>
@@ -36,7 +36,7 @@
         <p>No Ingredients for this Potion</p>
       <% end %>
       <h3 class="h5 mt-4">Created By</h3>
-      <p><%= link_to @potion.user.username, user_path(@potion.user), class: "text-info" %></p>
+      <p><%= link_to @potion.user.username, user_path(@potion.user), class: "link-light" %></p>
     </div>
   </div>
   <hr>
