@@ -62,7 +62,7 @@ Visit [http://localhost:3000](http://localhost:3000) in your browser.
 ### 5. Run the test suite
 
 ```sh
-bundle exec rspec
+bin/rspec
 ```
 
 ## Configuration
