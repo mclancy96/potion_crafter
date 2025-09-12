@@ -56,17 +56,19 @@ class PotionsController < ApplicationController
 
 private
 
+  # rubocop:disable Rails/StrongParametersExpect
   def potion_params
-    params.expect(
-      potion: [:name,
-               :description,
-               :user_id,
-               :effect,
-               :potency_level,
-               :image_url,
-               { potion_ingredients_attributes: %i[ingredient_id quantity id _destroy] }]
+    params.require(:potion).permit(
+      :name,
+      :description,
+      :user_id,
+      :effect,
+      :potency_level,
+      :image_url,
+      potion_ingredients_attributes: %i[ingredient_id quantity id _destroy]
     )
   end
+  # rubocop:enable Rails/StrongParametersExpect
 
   def set_potion
     @potion = Potion.find(params[:id])
