@@ -1,24 +1,42 @@
-<h1><%= @user.username %></h1>
-<h2>Potions</h2>
-<% if @user.potions.any? %>
-  <%= render 'potions/table' %>
-<% else %>
-  <p><i>User Has no Potions</i></p>
-<% end %>
-<hr>
-<h2>Reviews</h2>
-<% if @user.reviews.any? %>
-  <% @user.reviews.each do |review| %>
-    <div>
-      <h3><%= link_to review.potion.name, potion_path(review.potion) %></h3>
-      <p><%= review.rating_stars %></p>
-      <p><%= review.comment %></p>
-      <p>
-        <i>- <%= link_to review.user.username, user_path(review.user) %></i>
-        <%= user_is_current_user?(review.user) ? button_to('Edit Review', edit_potion_review_path(review.potion, review), method: :get) : ''%>
-      </p>
+<div class="container py-4">
+  <div class="row mb-4">
+    <div class="col-md-8 offset-md-2">
+      <h1 class="display-5 mb-0 text-center"><%= @user.username %></h1>
+      <h2 class="h4">Potions</h2>
+      <% if @user.potions.any? %>
+        <div class="mb-4">
+          <%= render 'potions/table' %>
+        </div>
+      <% else %>
+        <p><i>User Has no Potions</i></p>
+      <% end %>
+      <hr>
+      <h2 class="h4">Reviews</h2>
+      <% if @user.reviews.any? %>
+        <div class="row g-3">
+          <% @user.reviews.each do |review| %>
+            <div class="col-md-6">
+              <div class="card bg-dark text-white mb-3 shadow">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= link_to review.potion.name, potion_path(review.potion), class: "link-light" %>
+                  </h5>
+                  <p class="mb-1">Rating: <span class="badge"><%= review.rating_stars %></span></p>
+                  <p class="card-text"><%= review.comment %></p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                  <span><i>- <%= link_to review.user.username, user_path(review.user), class: "link-light" %></i></span>
+                  <% if user_is_current_user?(review.user) %>
+                    <%= button_to('Edit Review', edit_potion_review_path(review.potion, review), method: :get, class: "btn btn-info btn-sm") %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p><i>User Has no Reviews</i></p>
+      <% end %>
     </div>
-  <% end %>
-<% else %>
-  <p><i>User Has no Reviews</i></p>
-<% end %>
+  </div>
+</div>
