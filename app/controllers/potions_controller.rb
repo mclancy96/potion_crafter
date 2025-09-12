@@ -29,6 +29,7 @@ class PotionsController < ApplicationController
       flash[:notice] = "#{@potion.name} created successfully"
       redirect_to potion_path(@potion)
     else
+      3.times { @potion.potion_ingredients.build }
       flash.now[:alert] = "Unable to Create Potion"
       render :new
     end
@@ -39,7 +40,8 @@ class PotionsController < ApplicationController
       flash[:notice] = "#{@potion.name} updated successfully"
       redirect_to potion_path(@potion)
     else
-      flash[:alert] = "Unable to Update Potion"
+      3.times { @potion.potion_ingredients.build }
+      flash.now[:alert] = "Unable to Update Potion"
       render :edit
     end
   end
@@ -49,7 +51,7 @@ class PotionsController < ApplicationController
       flash[:notice] = "#{@potion.name} deleted successfully"
       redirect_to potions_path
     else
-      flash[:alert] = "Unable to delete Potion"
+      flash.now[:alert] = "Unable to delete Potion"
       render :show
     end
   end

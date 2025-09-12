@@ -1,25 +1,25 @@
-<%= form_with(model: @ingredient, local: true, class: "row g-3") do |form| %>
+<%= form_with(model: @ingredient, local: true, class: "row g-3", data: { turbo: false }) do |form| %>
   <% if @ingredient.errors.any? %>
     <div class="alert alert-danger mb-3">
       <h4 class="mb-2"><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h4>
       <ul class="mb-0">
         <% @ingredient.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="text-black"><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
   <div class="col-md-6">
     <%= form.label :name, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control" %>
+    <%= form.text_field :name, class: "form-control", required: true %>
   </div>
   <div class="col-md-6">
     <%= form.label :rarity, class: "form-label" %>
-    <%= form.number_field :rarity, min: 1, max: 10, class: "form-control" %>
+    <%= form.number_field :rarity, min: 1, max: 10, class: "form-control", required: true %>
   </div>
   <div class="col-md-12">
     <%= form.label :description, class: "form-label" %>
-    <%= form.text_area :description, class: "form-control", rows: 3 %>
+    <%= form.text_area :description, class: "form-control", rows: 3, required: true %>
   </div>
   <div class="col-12 text-center">
     <%= form.submit nil, class: "btn btn-primary" %>

@@ -1,24 +1,34 @@
-<%= form_with model: @potion, local: true, class: "row g-3" do |form| %>
+<%= form_with model: @potion, local: true, data: { turbo: false }, class: "row g-3" do |form| %>
+  <% if @potion.errors.any? %>
+    <div class="alert alert-danger mb-3">
+      <h4 class="mb-2"><%= pluralize(@potion.errors.count, "error") %> prohibited this potion from being saved:</h4>
+      <ul class="mb-0">
+        <% @potion.errors.full_messages.each do |message| %>
+          <li class="text-black"><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= form.hidden_field :user_id %>
   <div class="col-md-6">
     <%= form.label :name, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control" %>
+    <%= form.text_field :name, class: "form-control", required: true %>
   </div>
   <div class="col-md-6">
     <%= form.label :effect, class: "form-label" %>
-    <%= form.text_field :effect, class: "form-control" %>
+    <%= form.text_field :effect, class: "form-control", required: true %>
   </div>
   <div class="col-md-12">
     <%= form.label :description, class: "form-label" %>
-    <%= form.text_area :description, class: "form-control", rows: 3 %>
+    <%= form.text_area :description, class: "form-control", rows: 3, required: true %>
   </div>
   <div class="col-md-6">
     <%= form.label :potency_level, class: "form-label" %>
-    <%= form.number_field :potency_level, max: 10, min: 1, class: "form-control" %>
+    <%= form.number_field :potency_level, max: 10, min: 1, class: "form-control", required: true %>
   </div>
   <div class="col-md-6">
     <%= form.label :image_url, "Image URL", class: "form-label" %>
-    <%= form.text_field :image_url, class: "form-control" %>
+    <%= form.text_field :image_url, class: "form-control", required: true %>
   </div>
   <div>
     <h3>Ingredients</h3>

@@ -13,7 +13,7 @@
         <tr>
           <td><%= link_to ingredient.name, ingredient_path(ingredient), class: "link-light" %></td>
           <td><%= ingredient.description %></td>
-          <td><%= ingredient.rarity %></td>
+          <td><%= ingredient.rarity %> / 5</td>
           <td class="text-center">
             <%= button_to('Edit', edit_ingredient_path(ingredient), method: :get, class:'btn btn-light btn-sm') %>
           </td>
