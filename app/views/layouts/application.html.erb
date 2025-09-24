@@ -18,7 +18,7 @@
   </head>
   <body>
     <% if logged_in? %>
-      <%= render 'layouts/navbar' %>
+      <%= render Navbar::NavbarComponent.new %>
     <% end %>
     <% flash.each do |key, message| %>
       <% alert_type = key == 'alert' ? 'danger' : 'info' %>
