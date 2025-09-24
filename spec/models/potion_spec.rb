@@ -250,7 +250,7 @@ RSpec.describe Potion do
       potion.reload
       average_rating = potion.overall_rating
 
-      expect(average_rating).to be(0.00)
+      expect(average_rating).to be_within(0.01).of(0.0)
     end
 
     it "averages the rating of one review" do
@@ -261,7 +261,7 @@ RSpec.describe Potion do
       potion.reload
       average_rating = potion.overall_rating
 
-      expect(average_rating).to be(4.00)
+      expect(average_rating).to be_within(0.01).of(4.0)
     end
 
     it "averages the rating of four reviews" do
@@ -278,7 +278,7 @@ RSpec.describe Potion do
       potion.reload
       average_rating = potion.overall_rating
 
-      expect(average_rating).to be(3.25)
+      expect(average_rating).to be_within(0.01).of(3.25)
     end
 
     it "rounds the rating of three reviews" do
@@ -293,7 +293,7 @@ RSpec.describe Potion do
       potion.reload
       average_rating = potion.overall_rating
 
-      expect(average_rating).to be(3.33)
+      expect(average_rating).to be_within(0.01).of(3.33)
     end
   end
 

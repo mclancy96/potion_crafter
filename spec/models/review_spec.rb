@@ -155,10 +155,10 @@ RSpec.describe Review do
   describe ".recent_for_user" do
     let(:user) { create(:user) }
     let(:other_user) { create(:user) }
-    let!(:review1) { create(:review, user: user, created_at: 3.days.ago) }
-    let!(:review2) { create(:review, user: user, created_at: 2.days.ago) }
-    let!(:review3) { create(:review, user: user, created_at: 1.day.ago) }
-    let!(:review4) { create(:review, user: other_user, created_at: 1.day.ago) }
+    let!(:three_day_old_review) { create(:review, user: user, created_at: 3.days.ago) }
+    let!(:two_day_old_review) { create(:review, user: user, created_at: 2.days.ago) }
+    let!(:one_day_old_review) { create(:review, user: user, created_at: 1.day.ago) }
+    let!(:review_from_other_user) { create(:review, user: other_user, created_at: 1.day.ago) }
 
     it "returns only reviews for the given user" do
       expect(described_class.recent_for_user(user)).to all(have_attributes(user_id: user.id))
@@ -166,7 +166,7 @@ RSpec.describe Review do
 
     it "returns reviews in descending order of creation" do
       reviews = described_class.recent_for_user(user)
-      expect(reviews).to eq([review3, review2, review1])
+      expect(reviews).to eq([one_day_old_review, two_day_old_review, three_day_old_review])
     end
 
     it "limits the number of reviews returned (default 5)" do
@@ -174,11 +174,11 @@ RSpec.describe Review do
     end
 
     it "respects a custom limit" do
-      expect(described_class.recent_for_user(user, 2)).to eq([review3, review2])
+      expect(described_class.recent_for_user(user, 2)).to eq([one_day_old_review, two_day_old_review])
     end
 
     it "does not include reviews from other users" do
-      expect(described_class.recent_for_user(user)).not_to include(review4)
+      expect(described_class.recent_for_user(user)).not_to include(review_from_other_user)
     end
   end
 end
