@@ -5,8 +5,8 @@ FactoryBot.define do
     sequence(:name) { |n| "potion#{n}" }
     description { "A magical jumping bean" }
     user
-    effect { 'Makes you jump' }
+    effect { "Makes you jump" }
     potency_level { 9 }
-    image_url { 'abc123' }
+    image_url { "abc123" }
   end
 end

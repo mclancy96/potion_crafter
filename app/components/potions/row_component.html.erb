@@ -1,0 +1,21 @@
+<tr>
+  <td><%= link_to @potion.name, potion_path(@potion), class:"link-light" %></td>
+  <td><%= @potion.description %></td>
+  <td><%= link_to @potion.user.username, user_path(@potion.user), class:"link-light" %></td>
+  <td><%= @potion.effect %></td>
+  <td><%= @potion.potency_level %> / 10</td>
+  <td>
+    <% if can_edit?(@potion.user)%>
+      <%= button_to('Edit', edit_potion_path(@potion), method: :get, class:'btn btn-light btn-sm') %>
+    <% else %>
+      <button class="btn btn-secondary btn-sm" disabled>Edit</button>
+    <% end %>
+  </td>
+  <td>
+    <% if can_edit?(@potion.user)%>
+      <%= button_to('Delete', potion_path(@potion), method: :delete, class:'btn btn-light btn-sm') %>
+    <% else %>
+      <button class="btn btn-secondary btn-sm" disabled>Delete</button>
+    <% end %>
+  </td>
+</tr>

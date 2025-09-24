@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.feature "Sessions", type: :feature do
+RSpec.feature "Sessions" do
   scenario "User logs in" do
-    user = create(:user, password: 'password')
+    user = create(:user, password: "password")
     visit login_path
     fill_in "Username", with: user.username
     fill_in "Password", with: "password"
@@ -11,7 +11,7 @@ RSpec.feature "Sessions", type: :feature do
   end
 
   scenario "User logs out" do
-    user = create(:user, password: 'password')
+    user = create(:user, password: "password")
     visit login_path
     fill_in "Username", with: user.username
     fill_in "Password", with: "password"

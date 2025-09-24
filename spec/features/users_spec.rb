@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.feature "Users", type: :feature do
-  before(:each) do
+RSpec.feature "Users" do
+  before do
     user = create(:user)
     login_as(user)
   end
@@ -11,5 +11,4 @@ RSpec.feature "Users", type: :feature do
     visit user_path(user)
     expect(page).to have_content(user.username)
   end
-
 end

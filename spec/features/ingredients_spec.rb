@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.feature "Ingredients", type: :feature do
-  before(:each) do
+RSpec.feature "Ingredients" do
+  before do
     user = create(:user)
     login_as(user)
   end
-  
+
   scenario "User views the ingredients index" do
     ingredient = create(:ingredient)
     visit ingredients_path

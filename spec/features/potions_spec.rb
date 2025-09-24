@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.feature "Potions", type: :feature do
-  before(:each) do
+RSpec.feature "Potions" do
+  before do
     user = create(:user)
     login_as(user)
   end

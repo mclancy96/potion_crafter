@@ -5,7 +5,7 @@
       <h2 class="h4">Potions</h2>
       <% if @user.potions.any? %>
         <div class="mb-4">
-          <%= render 'potions/table' %>
+          <%= render Potions::TableComponent.new(potions: @user.potions, current_user: current_user) %>
         </div>
       <% else %>
         <p><i>User Has no Potions</i></p>
