@@ -1,14 +1,15 @@
 module Potions
   class RowComponent < ViewComponent::Base
-    def initialize(potion:)
+    def initialize(potion:, current_user: nil)
       super()
       @potion = potion
+      @current_user = current_user
     end
 
   private
 
     def can_edit?(user)
-      helpers.current_user == user
+      @current_user == user
     end
   end
 end

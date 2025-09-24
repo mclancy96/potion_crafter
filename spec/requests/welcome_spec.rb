@@ -1,11 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe "Welcome", type: :request do
+RSpec.describe "Welcome" do
   let(:user) { create(:user, password: "password") }
 
-  before(:each) do
+  before do
     login(user)
   end
+
   describe "GET /index" do
     it "returns a successful response" do
       get root_path

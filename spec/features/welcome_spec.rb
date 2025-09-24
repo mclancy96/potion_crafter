@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.feature "Welcome", type: :feature do
+RSpec.feature "Welcome" do
   scenario "User visits the home page" do
     visit root_path
     expect(page).to have_content("Welcome")

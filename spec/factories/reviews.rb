@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :review do
     potion
     user
-    comment { 'It works great' }
+    comment { "It works great" }
     rating { 5 }
   end
 end
