@@ -5,9 +5,9 @@ RSpec.describe Potions::TableComponent, type: :component do
 
   let(:owner)    { create(:user) }
   let(:other)    { create(:user) }
-  let!(:potion1) { create(:potion, name: "Potion A", user: owner) }
-  let!(:potion2) { create(:potion, name: "Potion B", user: owner) }
-  let(:potions)  { [potion1, potion2] }
+  let!(:potion_a) { create(:potion, name: "Potion A", user: owner) }
+  let!(:potion_b) { create(:potion, name: "Potion B", user: owner) }
+  let(:potions) { [potion_a, potion_b] }
 
   context "when current_user is the owner" do
     it "renders a table wrapper" do
@@ -26,7 +26,7 @@ RSpec.describe Potions::TableComponent, type: :component do
       result = render_inline(described_class.new(potions: potions, current_user: owner))
       names = result.css("tbody tr td a").map(&:text)
 
-      expect(names).to include(potion1.name, potion2.name)
+      expect(names).to include(potion_a.name, potion_b.name)
     end
 
     it "renders Edit forms for each owner row" do
