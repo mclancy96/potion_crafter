@@ -4,17 +4,17 @@
       <%= form.label :filter_potency_level, 'Filter by Potency Level' %>
     </span>
     <%= form.select(
-          :filter_potency_level,
-          Potion.potency_level_options.map { |opt| [opt[:name], opt[:id]] },
-          { selected: params[:filter_potency_level] }, class:"form-select"
+      :filter_potency_level,
+      Potion.potency_level_options.map { |opt| [opt[:name], opt[:id]] },
+      { selected: selected_filter }, class:"form-select"
     ) %>
     <span class="input-group-text bg-dark">
       <%= form.label :sort_potion_method, 'Sort Potions' %>
     </span>
     <%= form.select(
-          :sort_potion_method,
-          Potion.sort_options.map { |opt| [opt[:name], opt[:id]] },
-          { selected: params[:sort_potion_method] }, class:"form-select"
+      :sort_potion_method,
+      Potion.sort_options.map { |opt| [opt[:name], opt[:id]] },
+      { selected: selected_sort }, class:"form-select"
     )%>
     <%= form.submit 'Filter Potions', class:"btn btn-primary" %>
   </div>
