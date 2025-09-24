@@ -19,14 +19,14 @@
           <td><%= potion.effect %></td>
           <td><%= potion.potency_level %> / 10</td>
           <td>
-            <% if user_is_current_user?(potion.user)%>
+            <% if helpers.user_is_current_user?(potion.user)%>
               <%= button_to('Edit', edit_potion_path(potion), method: :get, class:'btn btn-light btn-sm') %>
             <% else %>
               <button class="btn btn-secondary btn-sm" disabled>Edit</button>
             <% end %>
           </td>
           <td>
-            <% if user_is_current_user?(potion.user)%>
+            <% if helpers.user_is_current_user?(potion.user)%>
               <%= button_to('Delete', potion_path(potion), method: :delete, class:'btn btn-light btn-sm') %>
             <% else %>
               <button class="btn btn-secondary btn-sm" disabled>Delete</button>
