@@ -11,6 +11,7 @@ plugins:
 AllCops:
   TargetRubyVersion: 3.3.5
   Exclude:
+    - 'spec/*'
     - 'vendor/**/*'
     - 'db/schema.rb'
     - 'db/seeds.rb'
