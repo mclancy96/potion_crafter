@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       <% @potions.each do |potion| %>
-        <%= render Potions::RowComponent.new(potion: potion, current_user: helpers.current_user) %>
+        <%= render Potions::RowComponent.new(potion: potion, current_user: @current_user) %>
       <% end %>
     </tbody>
   </table>

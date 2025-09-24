@@ -5,4 +5,4 @@
   <div class="p-2"><%= button_to 'New Potion', new_potion_path, class: 'btn btn-info', method: :get %></div>
 </div>
 <%= render Potions::FilterComponent.new %>
-<%= render Potions::TableComponent.new(potions: @potions) %>
+<%= render Potions::TableComponent.new(potions: @potions, current_user: current_user) %>
